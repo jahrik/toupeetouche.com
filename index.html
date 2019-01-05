@@ -36,6 +36,8 @@ var scoreText;
 var game;
 var gameWidth = 800;
 var gameHeight = 600;
+var moveLeft = false;
+var moveRight = false;
 
 window.onload = function() {
   var config = {
@@ -60,6 +62,7 @@ window.onload = function() {
   window.addEventListener("resize", resize, false);
 };
 
+// Resize to fill screen
 function resize() {
   var canvas = document.querySelector("canvas");
   var windowWidth = window.innerWidth;
@@ -81,6 +84,9 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('tweet', 'assets/tweet.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('left', 'assets/left.png');
+    this.load.image('right', 'assets/right.png');
+    this.load.image('jump', 'assets/jump.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
@@ -130,6 +136,31 @@ function create ()
         repeat: -1
     });
 
+    // Setup Movement Buttons
+    this.input.addPointer(2);
+
+    // Left Button
+    this.leftBtn = this.add.image(40, 570, 'left').setScale(1).setScrollFactor(0).setInteractive();
+    this.leftBtn.on('pointerdown', function(){
+        moveLeft = true;
+        moveRight = false;
+    }, this);
+    this.leftBtn.on('pointerup',   doStop);
+    this.leftBtn.on('pointerout',   doStop);
+
+    // Right Button
+    this.rightBtn = this.add.image(130, 570, 'right').setScale(1).setScrollFactor(0).setInteractive();
+    this.rightBtn.on('pointerdown',  function(){
+        moveRight = true;
+        moveLeft = false;
+    }, this);
+    this.rightBtn.on('pointerup',  doStop);
+    this.rightBtn.on('pointerout',  doStop);
+
+    // Jump Button
+    this.jumpBtn = this.add.image(650, 570, 'jump').setScale(1).setScrollFactor(0).setInteractive();
+    this.jumpBtn.on('pointerdown',   doJump);
+
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
@@ -170,27 +201,49 @@ function update ()
         return;
     }
 
-    if (cursors.left.isDown)
+    if (moveLeft || cursors.left.isDown)
     {
-        player.setVelocityX(-160);
-
-        player.anims.play('left', true);
+        doGoLeft();
     }
-    else if (cursors.right.isDown)
+    else if (moveRight || cursors.right.isDown)
     {
-        player.setVelocityX(160);
-
-        player.anims.play('right', true);
+        doGoRight();
     }
     else
     {
-        player.setVelocityX(0);
-
-        player.anims.play('turn');
+        doStop();
     }
 
-    if (cursors.up.isDown && player.body.touching.down)
+    if (cursors.up.isDown)
     {
+        doJump();
+    }
+
+}
+
+function doGoLeft()
+{
+    player.setVelocityX(-200);
+    player.anims.play('left', true);
+}
+
+function doGoRight()
+{
+    player.setVelocityX(200);
+    player.anims.play('right', true);
+}
+
+function doStop()
+{
+    player.setVelocityX(0);
+    player.anims.play('turn');
+    moveLeft = false;
+    moveRight = false;
+}
+
+function doJump()
+{
+    if (player.body.touching.down) {
         player.setVelocityY(-330);
     }
 }
