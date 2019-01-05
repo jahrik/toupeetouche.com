@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+
+  toupee_touche:
+    image: jahrik/toupee_touche:aarch64
+    networks:
+      - traefik
+    deploy:
+      replicas: 1
+      labels:
+        traefik.enable: 1
+        traefik.port: 80
+        traefik.backend: toupee_touche
+        traefik.docker.network: traefik
+        traefik.frontend.rule: Host:toupeetouche.com
+
+networks:
+  traefik:
+    name: traefik
+    driver: overlay
+    external: true
