@@ -100,7 +100,7 @@ function create ()
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 550, 'ground').setScale(3).refreshBody();
 
     //  Now let's create some ledges
     platforms.create(375, 400, 'ground').setScale(0.5).refreshBody();
@@ -140,7 +140,7 @@ function create ()
     this.input.addPointer(2);
 
     // Left Button
-    this.leftBtn = this.add.image(40, 570, 'left').setScale(1).setScrollFactor(0).setInteractive();
+    this.leftBtn = this.add.image(80, 555, 'left').setScale(2).setScrollFactor(0).setInteractive();
     this.leftBtn.on('pointerdown', function(){
         moveLeft = true;
         moveRight = false;
@@ -149,7 +149,7 @@ function create ()
     this.leftBtn.on('pointerout',   doStop);
 
     // Right Button
-    this.rightBtn = this.add.image(130, 570, 'right').setScale(1).setScrollFactor(0).setInteractive();
+    this.rightBtn = this.add.image(240, 555, 'right').setScale(2).setScrollFactor(0).setInteractive();
     this.rightBtn.on('pointerdown',  function(){
         moveRight = true;
         moveLeft = false;
@@ -158,7 +158,7 @@ function create ()
     this.rightBtn.on('pointerout',  doStop);
 
     // Jump Button
-    this.jumpBtn = this.add.image(650, 570, 'jump').setScale(1).setScrollFactor(0).setInteractive();
+    this.jumpBtn = this.add.image(650, 555, 'jump').setScale(1.8).setScrollFactor(0).setInteractive();
     this.jumpBtn.on('pointerdown',   doJump);
 
     //  Input Events
