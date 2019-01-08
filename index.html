@@ -47,7 +47,7 @@ window.onload = function() {
       physics: {
           default: 'arcade',
           arcade: {
-              gravity: { y: 300 },
+              gravity: { y: 750 },
               debug: false
           }
       },
@@ -244,7 +244,7 @@ function doStop()
 function doJump()
 {
     if (player.body.touching.down) {
-        player.setVelocityY(-330);
+        player.setVelocityY(-500);
     }
 }
 
