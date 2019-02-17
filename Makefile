@@ -1,6 +1,7 @@
 .EXPORT_ALL_VARIABLES:
 IMAGE = "jahrik/toupee_touche"
 TAG := $(shell uname -m)
+STACK = tt
 
 all: build
 
@@ -14,6 +15,6 @@ test:
 	@docker-compose up -d
 
 deploy:
-	@docker stack deploy --with-registry-auth -c docker-stack.yml tt
+	@docker stack deploy --with-registry-auth -c docker-stack.yml $(STACK)
 
 .PHONY: all build push test deploy

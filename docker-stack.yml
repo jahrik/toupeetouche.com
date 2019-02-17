@@ -14,9 +14,13 @@ services:
         traefik.backend: toupee_touche
         traefik.docker.network: traefik
         traefik.frontend.rule: Host:toupeetouche.com
+      placement:
+        constraints:
+          - node.labels.arch == aarch64
 
 networks:
   traefik:
     name: traefik
     driver: overlay
     external: true
+version: '3.5'
