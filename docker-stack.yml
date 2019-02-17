@@ -23,4 +23,3 @@ networks:
     name: traefik
     driver: overlay
     external: true
-version: '3.5'
