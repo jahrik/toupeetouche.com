@@ -42,8 +42,7 @@ node('manager') {
     }
 
     stage('deploy') {
-        sh "make deploy"
-      }
+      sh "make deploy"
     }
 
   } catch(error) {
