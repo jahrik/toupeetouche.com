@@ -1,1 +1,4 @@
 phaser3-rex-notes/
+*node_modules*
+*npm-debug.log
+*.env

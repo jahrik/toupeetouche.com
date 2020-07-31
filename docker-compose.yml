@@ -5,6 +5,6 @@ services:
   toupee_touche:
     image: jahrik/toupee_touche:${TAG}
     ports:
-      - "8086:80"
+      - "3000:3000"
     volumes:
-      - ./:/usr/share/nginx/html
+      - ./v2:/usr/src/app

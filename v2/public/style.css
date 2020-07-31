@@ -1,0 +1,16 @@
+/* styles */
+/* called by your view template */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+}
+
+canvas {
+  /* Center the canvas on the screen */
+  display: block;
+  margin: 20px auto;
+}

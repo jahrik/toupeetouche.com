@@ -1,0 +1,26 @@
+{
+  "name": "phaser-starter",
+  "version": "0.0.1",
+  "description": "A Phaser-powered game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "phaser": "^3.16.2"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/phaser-starter"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "phaser"
+  ]
+}

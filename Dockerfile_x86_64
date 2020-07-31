@@ -1,7 +1,18 @@
-FROM nginx
+FROM node:latest
 
-WORKDIR /usr/share/nginx/html
+ENV NODE_PORT=3000
 
-ADD https://raw.githubusercontent.com/photonstorm/phaser/master/dist/phaser.js phaser.js
-COPY assets ./assets
-COPY index.html ./
+WORKDIR /usr/src/app
+
+# COPY package*.json ./
+
+# RUN npm install
+
+# ADD https://raw.githubusercontent.com/photonstorm/phaser/master/dist/phaser.js phaser.js
+# COPY assets ./assets
+# COPY index.html ./
+
+COPY v2/ .
+
+EXPOSE 3000
+CMD [ "npm", "start" ]
