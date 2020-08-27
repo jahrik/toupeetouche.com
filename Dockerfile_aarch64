@@ -3,5 +3,17 @@ FROM arm64v8/nginx
 WORKDIR /usr/share/nginx/html
 
 ADD https://raw.githubusercontent.com/photonstorm/phaser/master/dist/phaser.js phaser.js
-COPY assets ./assets
-COPY index.html ./
+COPY v1/assets ./assets
+COPY v1/index.html ./
+
+# v2
+# FROM arm64v8/node:latest
+# 
+# ENV NODE_PORT=3000
+# 
+# WORKDIR /usr/src/app
+# 
+# COPY v2/ .
+# 
+# EXPOSE 3000
+# CMD [ "npm", "start" ]
