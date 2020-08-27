@@ -1,19 +1,21 @@
-FROM arm64v8/nginx
+FROM arm64v8/node:latest
 
-WORKDIR /usr/share/nginx/html
+ENV NODE_PORT=3000
 
-ADD https://raw.githubusercontent.com/photonstorm/phaser/master/dist/phaser.js phaser.js
-COPY v1/assets ./assets
-COPY v1/index.html ./
+WORKDIR /usr/src/app
 
-# v2
-# FROM arm64v8/node:latest
+COPY v2/ .
+
+EXPOSE 3000
+CMD [ "npm", "start" ]
+
+# v1
+# FROM arm64v8/nginx
 # 
-# ENV NODE_PORT=3000
+# WORKDIR /usr/share/nginx/html
 # 
-# WORKDIR /usr/src/app
-# 
-# COPY v2/ .
-# 
-# EXPOSE 3000
-# CMD [ "npm", "start" ]
+# ADD https://raw.githubusercontent.com/photonstorm/phaser/master/dist/phaser.js phaser.js
+# COPY v1/assets ./assets
+# COPY v1/index.html ./
+
+
